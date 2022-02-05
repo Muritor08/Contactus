@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact US</title>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+<body>
+    
+    {% if msg_name %}
+
+    <h2>Thanks {{msg_name}}</h2>
+    <p>We have recieved your email and will respond shortly...</p>
+
+    {% else %}
+
+    <h1>Get in Touch</h1>
+    <form id="post-form" method="post" action="{% url 'index' %}">
+
+        {% csrf_token %}
+
+        <input type="text" name="msg_name" id="msg_name" placeholder="Your name"> <br><br>
+        <input type="text" name="msg_email" id="msg_email" placeholder="Your email"> <br><br>
+        <textarea type="text" name="msg" id="msg" placeholder="Enter your message"></textarea><br> <br>
+        <div class="buttons">
+            <button type="submit" id="submit">Send Message</button>
+        </div>
+    </form>
+
+    {% endif %}
+</body>
+</html>
